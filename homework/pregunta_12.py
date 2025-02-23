@@ -15,3 +15,15 @@ def pregunta_12():
     {'A': 177, 'B': 187, 'C': 114, 'D': 136, 'E': 324}
 
     """
+    reducer = dict()
+    with open('./files/input/data.csv', 'r') as file:
+        for line in file.readlines():
+            letter, *_, code = line.strip().split('\t')
+            total = sum([int(pair.split(':')[1]) for pair in code.split(',')])
+            if letter not in reducer:
+                reducer[letter] = 0
+            reducer[letter] += total
+    
+    result = dict(sorted(reducer.items()))
+
+    return result

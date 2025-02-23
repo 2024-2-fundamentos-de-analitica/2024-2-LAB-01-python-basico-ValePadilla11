@@ -16,3 +16,17 @@ def pregunta_11():
 
 
     """
+
+    counter = dict()
+    with open('./files/input/data.csv', 'r') as file:
+        for line in file.readlines():
+            letter_list = line.split('\t')[3].split(',')
+            number = int(line.split('\t')[1])
+            for letter in letter_list:
+                if letter not in counter:
+                    counter[letter] = 0
+                counter[letter] += number
+
+    result = dict(sorted(counter.items()))
+
+    return result

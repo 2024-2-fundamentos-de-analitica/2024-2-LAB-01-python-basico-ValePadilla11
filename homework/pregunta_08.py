@@ -27,3 +27,16 @@ def pregunta_08():
      (9, ['A', 'B', 'C', 'E'])]
 
     """
+    grouper = dict()
+    with open('./files/input/data.csv', 'r') as file:
+        for line in file.readlines():
+            letter, number, *_ = line.strip().split('\t')
+            number = int(number)
+            if number not in grouper:
+                grouper[number] = []
+            if letter not in grouper[number]:
+                grouper[number] = sorted(grouper[number] + [letter])
+    
+    result = sorted(grouper.items())
+
+    return result

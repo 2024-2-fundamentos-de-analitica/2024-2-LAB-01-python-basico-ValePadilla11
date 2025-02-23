@@ -24,3 +24,16 @@ def pregunta_09():
      'jjj': 18}}
 
     """
+    counter = dict()
+    with open('./files/input/data.csv', 'r') as file:
+        for line in file.readlines():
+            code = line.strip().split('\t')[4]
+            keys = [pair.split(':')[0] for pair in code.split(',')]
+            for key in keys:
+                if key not in counter:
+                    counter[key] = 0
+                counter[key] += 1
+
+    result = dict(sorted(counter.items()))
+
+    return result

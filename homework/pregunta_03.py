@@ -15,3 +15,15 @@ def pregunta_03():
     [('A', 53), ('B', 36), ('C', 27), ('D', 31), ('E', 67)]
 
     """
+    group_counter = dict()
+    with open('./files/input/data.csv', 'r') as file:
+        for line in file.readlines():
+            letter = line.split('\t')[0]
+            value = int(line.split('\t')[1])
+            if letter not in group_counter:
+                group_counter[letter] = 0
+            group_counter[letter] += value
+    
+    result = sorted(group_counter.items(), key=lambda x: x[0])
+
+    return result

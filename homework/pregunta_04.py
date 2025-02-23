@@ -26,3 +26,15 @@ def pregunta_04():
      ('12', 3)]
 
     """
+    counter = dict()
+    with open('./files/input/data.csv', 'r') as file:
+        for line in file.readlines():
+            date = line.split('\t')[2]
+            month = date.split('-')[1]
+            if month not in counter:
+                counter[month] = 0
+            counter[month] += 1
+    
+    result = sorted(counter.items())
+
+    return result

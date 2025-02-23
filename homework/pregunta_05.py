@@ -15,3 +15,19 @@ def pregunta_05():
     [('A', 9, 2), ('B', 9, 1), ('C', 9, 0), ('D', 8, 3), ('E', 9, 1)]
 
     """
+    grouper = dict()
+    with open('./files/input/data.csv', 'r') as file:
+        for line in file.readlines():
+            letter = line.split('\t')[0]
+            value = int(line.split('\t')[1])
+            if letter not in grouper:
+                grouper[letter] = [value, value]
+            if value < grouper[letter][1]:
+                grouper[letter][1] = value
+            if value > grouper[letter][0]:
+                grouper[letter][0] = value
+    
+    result = sorted(grouper.items())
+    result = [(letter, *stats) for letter, stats in result]
+
+    return result

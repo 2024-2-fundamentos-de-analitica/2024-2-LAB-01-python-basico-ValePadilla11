@@ -26,3 +26,21 @@ def pregunta_06():
      ('jjj', 5, 17)]
 
     """
+    grouper = dict()
+    with open('./files/input/data.csv', 'r') as file:
+        for line in file.readlines():
+            code = line.strip().split('\t')[4]
+            pairs = [tuple(pair.split(':')) for pair in code.split(',')]
+            for key, value in pairs:
+                value = int(value)
+                if key not in grouper:
+                    grouper[key] = [value, value]
+                if value < grouper[key][0]:
+                    grouper[key][0] = value
+                if value > grouper[key][1]:
+                    grouper[key][1] = value
+    
+    result = sorted(grouper.items())
+    result = [(letter, *stats) for letter, stats in result]
+    
+    return result

@@ -20,3 +20,12 @@ def pregunta_10():
 
 
     """
+    sequence = []
+    with open('./files/input/data.csv', 'r') as file:
+        for line in file.readlines():
+            letter, *_, col4, col5 = line.strip().split('\t')
+            col4_size = len(col4.split(','))
+            col5_size = len(col5.split(','))
+            sequence.append((letter, col4_size, col5_size))
+    
+    return sequence
